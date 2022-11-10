@@ -4,50 +4,93 @@ font-family: 'Source Sans Pro */
 
 h1 {
   font-family: "Pacifico", cursive;
-  margin: 0 auto;
+  margin: 12px 0;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Source Sans Pro";
+  background-color: #ededed;
+  font-size: 14px;
 }
 
 header {
-    display: flex;
-    position: fixed;
-    width: 50vw;
-    top: 0;
-    margin: 0 auto;
-    background-color: #FFFFFF;
+  display: flex;
+  position: fixed;
+  width: 375px;
+  top: 0;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-bottom: 1px solid #c6c6c6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-
 .main {
-    padding-top: 56px;
-    width: 50vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  margin-top: 66px;
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.bold {
+  font-weight: 700;
 }
 
 .post {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
 }
 
 .avatar {
-    width: 34px;
-    height: 34px;
+  width: 34px;
+  height: 34px;
+  margin: 0 8px;
 }
-
 
 .post-img {
   width: 375px;
   height: 375px;
   background-size: cover;
   background-position: center;
+}
+
+.post-header {
+  width: 375px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 8px 0;
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column;
+  margin-left: 6px;
+}
+
+.post-content {
+  width: 346px;
+  justify-content: flex-start;
+}
+
+.heart {
+    cursor: pointer;
+}
+
+.icon {
+  transition-duration: 300ms;
+  padding: 4px;
+}
+
+.icon:hover {
+  opacity: 40%;
 }

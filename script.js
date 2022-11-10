@@ -2,7 +2,7 @@ const POSTS = [
   {
     name: "Magnus T. Boxer",
     username: "magdog2020",
-    location: "Baylands Nature Preserve Palo Alto, CA",
+    location: "Palo Alto, CA",
     avatar: "img/magnus-icon.PNG",
     post: "img/magnus-walk.jpeg",
     comment: "Exploring with my family!",
@@ -12,7 +12,7 @@ const POSTS = [
   {
     name: "Magnus T. Boxer",
     username: "magdog2020",
-    location: "Home California, USA",
+    location: "California, USA",
     avatar: "img/magnus-icon.PNG",
     post: "img/magnus-table.jpeg",
     comment: "Surveying my domain",
@@ -22,7 +22,7 @@ const POSTS = [
   {
     name: "Magnus T. Boxer",
     username: "magdog2020",
-    location: "Home California, USA",
+    location: "California, USA",
     avatar: "img/magnus-icon.PNG",
     post: "img/magnus-birthday.jpeg",
     comment: "Celebrating my best pal's birthday",
@@ -38,19 +38,31 @@ function renderPostHTML() {
     (post, index) =>
       `  <section class="post" >
       <div class="post-header">
-      <img class="avatar" src=${post.avatar} /> ${post.name} ${post.location}
+       <div class="header-img">
+          <img class="avatar" src=${post.avatar} />
+        </div>
+        <div class="header-text">
+          <span class="bold">${post.name}</span>
+          <span>${post.location}</span>
+        </div>
       </div>
       <div class="post-img" style="background-image: url(${post.post})"> 
       </div>
-      <div class="post-icons">
-        <span class="material-symbols-outlined"  onClick='incrementLikes(${JSON.stringify(
-          index
-        )})'> favorite </span>
-        <span class="material-symbols-outlined"> chat_bubble </span>
-        <span class="material-symbols-outlined"> mail </span>
+        <div class="post-content">
+          <div class="post-icons">
+            <span class="material-symbols-outlined icon heart" id="like-heart-${index}" onClick='incrementLikes(${JSON.stringify(
+        index
+      )})'> favorite </span>
+            <span class="material-symbols-outlined icon"> chat_bubble </span>
+            <span class="material-symbols-outlined icon"> mail </span>
+          </div>
+          <span class="post-likes bold" id="likes-${index}">${
+        post.likes
+      }</span> likes
+          <div class="post-content"><span class="bold">${
+            post.username
+          }</span> ${post.comment}</div>
       </div>
-      <div class="post-likes" id="likes-${index}">${post.likes}</div>
-      <div class="post-content">${post.comment}</div>
     </section>`
   );
 
@@ -63,16 +75,19 @@ function renderPosts() {
 
 function incrementLikes(postIndex) {
   const likesEl = document.getElementById(`likes-${postIndex}`);
+  const likeHeart = document.getElementById(`like-heart-${postIndex}`);
   POSTS[postIndex].likes = likesEl.textContent;
 
   if (!POSTS[postIndex].liked) {
     POSTS[postIndex].likes = parseInt(likesEl.textContent);
     POSTS[postIndex].likes += 1;
     POSTS[postIndex].liked = true;
+    likeHeart.style.color = "deeppink";
   } else {
     POSTS[postIndex].likes = parseInt(likesEl.textContent);
     POSTS[postIndex].likes -= 1;
     POSTS[postIndex].liked = false;
+    likeHeart.style.color = "black";
   }
   likesEl.textContent = POSTS[postIndex].likes;
 }
