@@ -1,6 +1,5 @@
 const POSTS = [
   {
-    id: 1,
     name: "Magnus T. Boxer",
     username: "magdog2020",
     location: "Baylands Nature Preserve Palo Alto, CA",
@@ -11,7 +10,6 @@ const POSTS = [
     liked: false,
   },
   {
-    id: 2,
     name: "Magnus T. Boxer",
     username: "magdog2020",
     location: "Home California, USA",
@@ -22,7 +20,6 @@ const POSTS = [
     liked: false,
   },
   {
-    id: 3,
     name: "Magnus T. Boxer",
     username: "magdog2020",
     location: "Home California, USA",
@@ -38,7 +35,7 @@ const mainEl = document.getElementById("main");
 
 function renderPostHTML() {
   const postSection = POSTS.map(
-    (post) =>
+    (post, index) =>
       `  <section class="post" >
       <div class="post-header">
       <img class="avatar" src=${post.avatar} /> ${post.name} ${post.location}
@@ -47,12 +44,12 @@ function renderPostHTML() {
       </div>
       <div class="post-icons">
         <span class="material-symbols-outlined"  onClick='incrementLikes(${JSON.stringify(
-          post
+          index
         )})'> favorite </span>
         <span class="material-symbols-outlined"> chat_bubble </span>
         <span class="material-symbols-outlined"> mail </span>
       </div>
-      <div class="post-likes" id="${post.id}">${post.likes}</div>
+      <div class="post-likes" id="likes-${index}">${post.likes}</div>
       <div class="post-content">${post.comment}</div>
     </section>`
   );
@@ -64,29 +61,20 @@ function renderPosts() {
   mainEl.innerHTML = renderPostHTML().join("");
 }
 
-function incrementLikes(post) {
-  const likesEl = document.getElementById(post.id);
-  if (!post.liked) {
-    post.likes++;
-    post.liked = true;
-    likesEl.textContent = post.likes;
-    // likesEl.textContent = post.likes
-  } else {
-    post.likes--;
-    post.liked = false;
-    likesEl.textContent = post.likes;
-  }
- 
-  console.log(post.liked);
-}
-renderPosts();
+function incrementLikes(postIndex) {
+  const likesEl = document.getElementById(`likes-${postIndex}`);
+  POSTS[postIndex].likes = likesEl.textContent;
 
-// console.log(postSection)
-// function incrementLikes(post) {
-//   // if (!post.liked) {
-//   //   post.likes++;
-//   //   post.liked = false;
-//   // }
-//   console.log(post.name);
-// }
-// const likeEl = document.getElementById(`like-${index}`)
+  if (!POSTS[postIndex].liked) {
+    POSTS[postIndex].likes = parseInt(likesEl.textContent);
+    POSTS[postIndex].likes += 1;
+    POSTS[postIndex].liked = true;
+  } else {
+    POSTS[postIndex].likes = parseInt(likesEl.textContent);
+    POSTS[postIndex].likes -= 1;
+    POSTS[postIndex].liked = false;
+  }
+  likesEl.textContent = POSTS[postIndex].likes;
+}
+
+renderPosts();
