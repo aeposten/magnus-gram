@@ -1,12 +1,38 @@
 @import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Source+Sans+Pro:wght@300;700&display=swap");
-/* font-family: 'Pacifico', cursive;
-font-family: 'Source Sans Pro */
 
+/* Typography */
 h1 {
   font-family: "Pacifico", cursive;
   margin: 12px 0;
 }
 
+.bold {
+  font-weight: 700;
+}
+
+.heart {
+  margin-left: 0;
+  cursor: pointer;
+}
+
+.icon {
+transition-duration: 300ms;
+}
+
+.icon:hover {
+opacity: 40%;
+}
+
+/* layout alignment */
+.post, .main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* General formatting for body */
 body {
   display: flex;
   flex-direction: column;
@@ -16,40 +42,7 @@ body {
   font-size: 14px;
 }
 
-header {
-  display: flex;
-  position: fixed;
-  width: 375px;
-  top: 0;
-  margin: 0 auto;
-  background-color: #ffffff;
-  border-bottom: 1px solid #c6c6c6;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.main {
-  margin-top: 66px;
-  width: 50vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.bold {
-  font-weight: 700;
-}
-
-.post {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #ffffff;
-}
-
+/* Formatting for Images */
 .avatar {
   width: 34px;
   height: 34px;
@@ -61,6 +54,32 @@ header {
   height: 375px;
   background-size: cover;
   background-position: center;
+}
+
+
+/* Formatting for page header */
+header {
+  display: flex;
+  position: fixed;
+  align-items: center;
+  justify-content: space-between;
+  width: 375px;
+  top: 0;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-bottom: 1px solid #c6c6c6;
+}
+
+.main {
+  margin-top: 56px;
+  width: 50vw;
+
+}
+
+/* Formatting for "Posts" */
+.post {
+  background-color: #ffffff;
+  margin: 10px 0;
 }
 
 .post-header {
@@ -80,16 +99,7 @@ header {
 .post-content {
   width: 346px;
   justify-content: flex-start;
+  margin: 4px 0;
 }
 
-.heart {
-    cursor: pointer;
-}
 
-.icon {
-  transition-duration: 300ms;
-}
-
-.icon:hover {
-  opacity: 40%;
-}
