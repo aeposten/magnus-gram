@@ -1,3 +1,4 @@
+//Data for posts
 const POSTS = [
   {
     name: "Magnus T. Boxer",
@@ -33,6 +34,8 @@ const POSTS = [
 
 const mainEl = document.getElementById("main");
 
+
+// Iterates over post objects and renders HTML for posts
 function renderPostHTML() {
   const postSection = POSTS.map(
     (post, index) =>
@@ -69,10 +72,13 @@ function renderPostHTML() {
   return postSection;
 }
 
+
+//Renders posts on page
 function renderPosts() {
   mainEl.innerHTML = renderPostHTML().join("");
 }
 
+//Sets if a post is to be liked or unliked 
 function likeUnlike(num, col, bool, el, index) {
   const likeHeart = document.getElementById(`like-heart-${index}`);
 
@@ -82,6 +88,8 @@ function likeUnlike(num, col, bool, el, index) {
   likeHeart.style.color = col;
 }
 
+
+//Renders likes on page
 function renderLikes(postIndex) {
   const likesEl = document.getElementById(`likes-${postIndex}`);
    POSTS[postIndex].likes = likesEl.textContent;
