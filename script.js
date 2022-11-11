@@ -50,7 +50,7 @@ function renderPostHTML() {
       </div>
         <div class="post-content">
           <div class="post-icons">
-            <span class="material-symbols-outlined icon heart" id="like-heart-${index}" onClick='incrementLikes(${JSON.stringify(
+            <span class="material-symbols-outlined icon heart" id="like-heart-${index}" onClick='renderLikes(${JSON.stringify(
         index
       )})'> favorite </span>
             <span class="material-symbols-outlined icon"> chat_bubble </span>
@@ -73,22 +73,23 @@ function renderPosts() {
   mainEl.innerHTML = renderPostHTML().join("");
 }
 
-function incrementLikes(postIndex) {
-  const likesEl = document.getElementById(`likes-${postIndex}`);
-  const likeHeart = document.getElementById(`like-heart-${postIndex}`);
-  POSTS[postIndex].likes = likesEl.textContent;
+function likeUnlike(num, col, bool, el, index) {
+  const likeHeart = document.getElementById(`like-heart-${index}`);
 
-  if (!POSTS[postIndex].liked) {
-    POSTS[postIndex].likes = parseInt(likesEl.textContent);
-    POSTS[postIndex].likes += 1;
-    POSTS[postIndex].liked = true;
-    likeHeart.style.color = "deeppink";
-  } else {
-    POSTS[postIndex].likes = parseInt(likesEl.textContent);
-    POSTS[postIndex].likes -= 1;
-    POSTS[postIndex].liked = false;
-    likeHeart.style.color = "black";
-  }
+  POSTS[index].likes = parseInt(el.textContent);
+  POSTS[index].likes += num;
+  POSTS[index].liked = bool;
+  likeHeart.style.color = col;
+}
+
+function renderLikes(postIndex) {
+  const likesEl = document.getElementById(`likes-${postIndex}`);
+   POSTS[postIndex].likes = likesEl.textContent;
+
+  !POSTS[postIndex].liked
+    ? likeUnlike(1, "deeppink", true, likesEl, postIndex)
+    : likeUnlike(-1, "black", false, likesEl, postIndex);
+
   likesEl.textContent = POSTS[postIndex].likes;
 }
 
