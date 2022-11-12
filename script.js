@@ -38,7 +38,7 @@ renderPostHTML();
 // Iterates over post objects and renders HTML for posts
 function renderPostHTML() {
   const postSection = POSTS.map(
-    ({ post, avatar, likes, comment, location, username }, index) =>
+    ({ post, avatar, name, location, likes, username, comment}, index) =>
       `  <section class="post" >
       <div class="post-header">
        <div class="header-img">
