@@ -16,21 +16,21 @@ h1 {
 }
 
 .icon {
-transition-duration: 300ms;
+  transition-duration: 300ms;
 }
 
 .icon:hover {
-opacity: 40%;
+  opacity: 40%;
 }
 
 /* layout alignment */
-.post, .main {
+.post,
+.main {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-
 
 /* General formatting for body */
 body {
@@ -56,7 +56,6 @@ body {
   background-position: center;
 }
 
-
 /* Formatting for page header */
 header {
   display: flex;
@@ -73,7 +72,6 @@ header {
 .main {
   margin-top: 56px;
   width: 50vw;
-
 }
 
 /* Formatting for "Posts" */
@@ -101,5 +99,3 @@ header {
   justify-content: flex-start;
   margin: 4px 0;
 }
-
-

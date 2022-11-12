@@ -33,72 +33,57 @@ const POSTS = [
 ];
 
 const mainEl = document.getElementById("main");
-
+renderPostHTML();
 
 // Iterates over post objects and renders HTML for posts
 function renderPostHTML() {
   const postSection = POSTS.map(
-    (post, index) =>
+    ({ post, avatar, name, location, likes, username, comment }, index) =>
       `  <section class="post" >
       <div class="post-header">
        <div class="header-img">
-          <img class="avatar" src=${post.avatar} />
+          <img class="avatar" src=${avatar} />
         </div>
         <div class="header-text">
-          <span class="bold">${post.name}</span>
-          <span>${post.location}</span>
+          <span class="bold">${name}</span>
+          <span>${location}</span>
         </div>
       </div>
-      <div class="post-img" style="background-image: url(${post.post})"> 
+      <div class="post-img" style="background-image: url(${post})"> 
       </div>
         <div class="post-content">
           <div class="post-icons">
-            <span class="material-symbols-outlined icon heart" id="like-heart-${index}" onClick='renderLikes(${JSON.stringify(
-        index
-      )})'> favorite </span>
+            <span class="material-symbols-outlined icon heart" id="like-heart-${index}" onClick='renderLikes(${index})'> favorite </span>
             <span class="material-symbols-outlined icon"> chat_bubble </span>
             <span class="material-symbols-outlined icon"> mail </span>
           </div>
-          <span class="post-likes bold" id="likes-${index}">${
-        post.likes
-      }</span> likes
-          <div class="post-content"><span class="bold">${
-            post.username
-          }</span> ${post.comment}</div>
+          <span class="post-likes bold" id="likes-${index}">${likes}</span> likes
+          <div class="post-content"><span class="bold">${username}</span> ${comment}</div>
       </div>
     </section>`
   );
 
-  return postSection;
+  return (mainEl.innerHTML = postSection.join(""));
 }
 
-
-//Renders posts on page
-function renderPosts() {
-  mainEl.innerHTML = renderPostHTML().join("");
-}
-
-//Sets if a post is to be liked or unliked 
-function likeUnlike(num, col, bool, el, index) {
+//Sets if a post is to be liked or unliked
+function likeUnlike(num, col, el, index) {
   const likeHeart = document.getElementById(`like-heart-${index}`);
 
-  POSTS[index].likes = parseInt(el.textContent);
+  POSTS[index].likes = +el.textContent + num;
   POSTS[index].likes += num;
-  POSTS[index].liked = bool;
+  POSTS[index].liked = !POSTS[index].liked;
   likeHeart.style.color = col;
 }
-
 
 //Renders likes on page
 function renderLikes(postIndex) {
   const likesEl = document.getElementById(`likes-${postIndex}`);
-   POSTS[postIndex].likes = likesEl.textContent;
+  POSTS[postIndex].likes = likesEl.textContent;
 
   !POSTS[postIndex].liked
-    ? likeUnlike(1, "deeppink", true, likesEl, postIndex)
-    : likeUnlike(-1, "black", false, likesEl, postIndex);
+    ? likeUnlike(1, "deeppink", likesEl, postIndex)
+    : likeUnlike(-1, "black", likesEl, postIndex);
 
   likesEl.textContent = POSTS[postIndex].likes;
 }
-
-renderPosts();
