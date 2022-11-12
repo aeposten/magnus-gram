@@ -38,7 +38,7 @@ renderPostHTML();
 // Iterates over post objects and renders HTML for posts
 function renderPostHTML() {
   const postSection = POSTS.map(
-    ({ post, avatar, name, location, likes, username, comment }, index) =>
+    ({ post, avatar, likes, comment, location, username }, index) =>
       `  <section class="post" >
       <div class="post-header">
        <div class="header-img">
@@ -71,7 +71,6 @@ function likeUnlike(num, col, el, index) {
   const likeHeart = document.getElementById(`like-heart-${index}`);
 
   POSTS[index].likes = +el.textContent + num;
-  POSTS[index].likes += num;
   POSTS[index].liked = !POSTS[index].liked;
   likeHeart.style.color = col;
 }
